@@ -1125,7 +1125,7 @@ DIRECT_V2     | PRESENT         | Yes      | Boolean RLE
 
 Timestamp records times down to nanoseconds as a PRESENT stream that
 records non-null values, a DATA stream that records the number of
-seconds after 1 January 2015, and a SECONDARY stream that records the
+seconds after 1 January 1970, and a SECONDARY stream that records the
 number of nanoseconds.
 
 Because the number of nanoseconds often has a large number of trailing
