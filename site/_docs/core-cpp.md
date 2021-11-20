@@ -238,7 +238,7 @@ ORC_UNIQUE_PTR<InputStream> inStream =
   readLocalFile("my-file.orc");
 ReaderOptions options;
 ORC_UNIQUE_PTR<Reader> reader =
-  createReader(inStream, options);
+  createReader(std::move(inStream), options);
 ~~~
 
 To get the data, create a `orc::RowReader` object. By default,
