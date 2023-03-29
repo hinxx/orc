@@ -159,8 +159,8 @@ void test_multi_stripe_flushing(unsigned rowBatchSize) {
 }
 
 int main(int argc, char const *argv[]) {
-    test_empty();
-    test_multi_stripe(10);
+    // test_empty();
+    // test_multi_stripe(10);
     test_multi_stripe_flushing(10);
     return 0;
 }

@@ -397,6 +397,7 @@ namespace orc {
   }
 
   void WriterImpl::close() {
+    printf("%s %d: >>>\n", __func__, __LINE__);
     if (stripeRows > 0) {
       writeStripe();
     }
@@ -404,6 +405,7 @@ namespace orc {
     writeFileFooter();
     writePostscript();
     outStream->close();
+    printf("%s %d: <<<\n", __func__, __LINE__);
   }
 
 /*
@@ -427,20 +429,30 @@ namespace orc {
 */
 
   long WriterImpl::writeIntermediateFooter() {
+    printf("%s %d: >>>\n", __func__, __LINE__);
     if (stripeRows > 0) {
-      printf("%s: stripeRows > 0: %ld\n", __func__, stripeRows);
+      printf("%s %d: stripeRows > 0: %ld\n", __func__, __LINE__, stripeRows);
       writeStripe();
     }
-    printf("%s: stripesAtLastFlush %ld, numStripes %ld\n", __func__, stripesAtLastFlush, numStripes);
+    printf("%s %d: stripesAtLastFlush %ld, numStripes %ld\n", __func__, __LINE__, stripesAtLastFlush, numStripes);
     if (stripesAtLastFlush != numStripes) {
       writeMetadata();
       writeFileFooter();
       stripesAtLastFlush = numStripes;
       writePostscript();
-      lastFlushOffset = outStream->getLength();
-      printf("%s: lastFlushOffset %ld\n", __func__, lastFlushOffset);
+      // lastFlushOffset = outStream->getLength();
+      printf("%s %d: lastFlushOffset %ld\n", __func__, __LINE__, lastFlushOffset);
       outStream->flush();
+      lastFlushOffset = outStream->getLength();
+
+      // HK>> solve the stripe offset issue
+      currentOffset = lastFlushOffset;
+      printf("%s %d: currentOffset = %ld\n", __func__, __LINE__, currentOffset);
+      // init stripe now that we adjusted the currentOffset
+      initStripe();
+      // HK<<
     }
+    printf("%s %d: <<<\n", __func__, __LINE__);
     return stripesAtLastFlush;
   }
 
@@ -562,9 +574,17 @@ namespace orc {
     stripeInfo.set_footerlength(footerLength);
     stripeInfo.set_numberofrows(stripeRows);
 
+    printf("%s %d: stripeInfo.PrintDebugString()\n", __func__, __LINE__);
+    stripeInfo.PrintDebugString();
+
     *fileFooter.add_stripes() = stripeInfo;
+    printf("%s %d: fileFooter.stripes_size() = %d\n", __func__, __LINE__, fileFooter.stripes_size());
+
+    printf("%s %d: fileFooter.PrintDebugString()\n", __func__, __LINE__);
+    fileFooter.PrintDebugString();
 
     currentOffset = currentOffset + indexLength + dataLength + footerLength;
+    printf("%s %d: currentOffset = %ld\n", __func__, __LINE__, currentOffset);
     totalRows += stripeRows;
 
     columnWriter->reset();

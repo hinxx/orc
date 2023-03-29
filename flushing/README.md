@@ -523,3 +523,1117 @@ Exception in thread "main" org.apache.orc.protobuf.InvalidProtocolBufferExceptio
 	at org.apache.orc.tools.FileDump.printMetaData(FileDump.java:276)
 	at org.apache.orc.tools.FileDump.main(FileDump.java:137)
 	at org.apache.orc.tools.Driver.main(Driver.java:124)
+
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ ./test1
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 3
+indexLength: 0
+dataLength: 2
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 1
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 0
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 0
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 0, numStripes 1
+writeIntermediateFooter 444: lastFlushOffset 162
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 30
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 2
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 27
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 10
+statistics {
+  numberOfValues: 10
+  hasNull: false
+}
+statistics {
+  numberOfValues: 10
+  intStatistics {
+    minimum: 0
+    maximum: 0
+    sum: 0
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 1, numStripes 2
+writeIntermediateFooter 444: lastFlushOffset 357
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 59
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 3
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 56
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 20
+statistics {
+  numberOfValues: 20
+  hasNull: false
+}
+statistics {
+  numberOfValues: 20
+  intStatistics {
+    minimum: 0
+    maximum: 9
+    sum: 45
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 2, numStripes 3
+writeIntermediateFooter 444: lastFlushOffset 588
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 88
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 4
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 85
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 30
+statistics {
+  numberOfValues: 30
+  hasNull: false
+}
+statistics {
+  numberOfValues: 30
+  intStatistics {
+    minimum: 0
+    maximum: 18
+    sum: 135
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 3, numStripes 4
+writeIntermediateFooter 444: lastFlushOffset 854
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 117
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 5
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 114
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 40
+statistics {
+  numberOfValues: 40
+  hasNull: false
+}
+statistics {
+  numberOfValues: 40
+  intStatistics {
+    minimum: 0
+    maximum: 27
+    sum: 270
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 4, numStripes 5
+writeIntermediateFooter 444: lastFlushOffset 1157
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 146
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 6
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 143
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 146
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 50
+statistics {
+  numberOfValues: 50
+  hasNull: false
+}
+statistics {
+  numberOfValues: 50
+  intStatistics {
+    minimum: 0
+    maximum: 36
+    sum: 450
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 5, numStripes 6
+writeIntermediateFooter 444: lastFlushOffset 1497
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 175
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 7
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 172
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 146
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 175
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 60
+statistics {
+  numberOfValues: 60
+  hasNull: false
+}
+statistics {
+  numberOfValues: 60
+  intStatistics {
+    minimum: 0
+    maximum: 45
+    sum: 675
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 6, numStripes 7
+writeIntermediateFooter 444: lastFlushOffset 1873
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 204
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 8
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 201
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 146
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 175
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 204
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 70
+statistics {
+  numberOfValues: 70
+  hasNull: false
+}
+statistics {
+  numberOfValues: 70
+  intStatistics {
+    minimum: 0
+    maximum: 54
+    sum: 945
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 7, numStripes 8
+writeIntermediateFooter 444: lastFlushOffset 2285
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 233
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 9
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 230
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 146
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 175
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 204
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 233
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 80
+statistics {
+  numberOfValues: 80
+  hasNull: false
+}
+statistics {
+  numberOfValues: 80
+  intStatistics {
+    minimum: 0
+    maximum: 63
+    sum: 1260
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 8, numStripes 9
+writeIntermediateFooter 444: lastFlushOffset 2735
+writeIntermediateFooter 447: <<<
+writeIntermediateFooter 432: >>>
+writeIntermediateFooter 434: stripeRows > 0: 10
+writeStripe 569: stripeInfo.PrintDebugString()
+offset: 262
+indexLength: 0
+dataLength: 4
+footerLength: 25
+numberOfRows: 10
+writeStripe 573: fileFooter.stripes_size() = 10
+writeStripe 575: fileFooter.PrintDebugString()
+headerLength: 3
+contentLength: 259
+stripes {
+  offset: 3
+  indexLength: 0
+  dataLength: 2
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 30
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 59
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 88
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 117
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 146
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 175
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 204
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 233
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+stripes {
+  offset: 262
+  indexLength: 0
+  dataLength: 4
+  footerLength: 25
+  numberOfRows: 10
+}
+types {
+  kind: STRUCT
+  subtypes: 1
+  fieldNames: "col1"
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+types {
+  kind: INT
+  maximumLength: 0
+  precision: 0
+  scale: 0
+}
+numberOfRows: 90
+statistics {
+  numberOfValues: 90
+  hasNull: false
+}
+statistics {
+  numberOfValues: 90
+  intStatistics {
+    minimum: 0
+    maximum: 72
+    sum: 1620
+  }
+  hasNull: false
+}
+rowIndexStride: 0
+writer: 1
+softwareVersion: "1.9.0-SNAPSHOT"
+writeIntermediateFooter 437: stripesAtLastFlush 9, numStripes 10
+writeIntermediateFooter 444: lastFlushOffset 3222
+writeIntermediateFooter 447: <<<
+close 400: >>>
+close 408: <<<
+
+
+fileStats.size() = 2
+i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+
+File Statistics:
+  Column 0: count: 100 hasNull: false
+  Column 1: count: 100 hasNull: false min: 0 max: 81 sum: 2025
+
+Stripes:
+
+HK: stripeStart = 3
+  Stripe: offset: 3 data: 2 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 3 length 2
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+
+HK: stripeStart = 30
+
+Exception in thread "main" org.apache.orc.protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+	at org.apache.orc.protobuf.InvalidProtocolBufferException.truncatedMessage(InvalidProtocolBufferException.java:107)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readRawBytesSlowPathOneChunk(CodedInputStream.java:2984)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readBytesSlowPath(CodedInputStream.java:3035)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readBytes(CodedInputStream.java:2446)
+	at org.apache.orc.OrcProto$StripeFooter.<init>(OrcProto.java:16930)
+	at org.apache.orc.OrcProto$StripeFooter.<init>(OrcProto.java:16864)
+	at org.apache.orc.OrcProto$StripeFooter$1.parsePartialFrom(OrcProto.java:18562)
+	at org.apache.orc.OrcProto$StripeFooter$1.parsePartialFrom(OrcProto.java:18556)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:86)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:91)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:48)
+	at org.apache.orc.protobuf.GeneratedMessageV3.parseWithIOException(GeneratedMessageV3.java:357)
+	at org.apache.orc.OrcProto$StripeFooter.parseFrom(OrcProto.java:17342)
+	at org.apache.orc.impl.RecordReaderUtils$DefaultDataReader.readStripeFooter(RecordReaderUtils.java:97)
+	at org.apache.orc.impl.RecordReaderImpl.readStripeFooter(RecordReaderImpl.java:432)
+	at org.apache.orc.tools.FileDump.printMetaDataImpl(FileDump.java:384)
+	at org.apache.orc.tools.FileDump.printMetaData(FileDump.java:276)
+	at org.apache.orc.tools.FileDump.main(FileDump.java:137)
+	at org.apache.orc.tools.Driver.main(Driver.java:124)
+
+The stripe ( > 1 ) offsets are not accounting for the file footer + metadata + postscript size before
+initializing next stripe!!
+
+After adding the lines:
+
+
+      currentOffset = lastFlushOffset;
+      printf("%s %d: currentOffset = %ld\n", __func__, __LINE__, currentOffset);
+      // init stripe now that we adjusted the currentOffset
+      initStripe();
+
+to the   long WriterImpl::writeIntermediateFooter()  and commenting out the  initStripe(); from the
+  void WriterImpl::writeStripe()  there are no more issues!
+
+
+java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
+Processing data file c++-flushing.orc [length: 3718]
+Structure for c++-flushing.orc
+File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+Rows: 100
+Compression: NONE
+Calendar: Julian/Gregorian
+Type: struct<col1:int>
+
+Stripe Statistics:
+  Stripe 1:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 0 sum: 0
+  Stripe 2:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 9 sum: 45
+  Stripe 3:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 18 sum: 90
+  Stripe 4:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 27 sum: 135
+  Stripe 5:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 36 sum: 180
+  Stripe 6:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 45 sum: 225
+  Stripe 7:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 54 sum: 270
+  Stripe 8:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 63 sum: 315
+  Stripe 9:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 72 sum: 360
+  Stripe 10:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 81 sum: 405
+fileStats.size() = 2
+i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+
+File Statistics:
+  Column 0: count: 100 hasNull: false
+  Column 1: count: 100 hasNull: false min: 0 max: 81 sum: 2025
+
+Stripes:
+HK: stripeStart = 3
+  Stripe: offset: 3 data: 2 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 3 length 2
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 162
+  Stripe: offset: 162 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 162 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 359
+  Stripe: offset: 359 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 359 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 593
+  Stripe: offset: 593 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 593 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 864
+  Stripe: offset: 864 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 864 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1171
+  Stripe: offset: 1171 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1171 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1515
+  Stripe: offset: 1515 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1515 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1895
+  Stripe: offset: 1895 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1895 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 2311
+  Stripe: offset: 2311 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 2311 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 2765
+  Stripe: offset: 2765 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 2765 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+
+File length: 3718 bytes
+Padding length: 2503 bytes
+Padding ratio: 67.32%
+________________________________________________________________________________________________________________________
+
+
+java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar data c++-flushing.orc
+[main] WARN org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+log4j:WARN No appenders could be found for logger (org.apache.htrace.core.Tracer).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Processing data file c++-flushing.orc [length: 3718]
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":1}
+{"col1":2}
+{"col1":3}
+{"col1":4}
+{"col1":5}
+{"col1":6}
+{"col1":7}
+{"col1":8}
+{"col1":9}
+{"col1":0}
+{"col1":2}
+{"col1":4}
+{"col1":6}
+{"col1":8}
+{"col1":10}
+{"col1":12}
+{"col1":14}
+{"col1":16}
+{"col1":18}
+{"col1":0}
+{"col1":3}
+{"col1":6}
+{"col1":9}
+{"col1":12}
+{"col1":15}
+{"col1":18}
+{"col1":21}
+{"col1":24}
+{"col1":27}
+{"col1":0}
+{"col1":4}
+{"col1":8}
+{"col1":12}
+{"col1":16}
+{"col1":20}
+{"col1":24}
+{"col1":28}
+{"col1":32}
+{"col1":36}
+{"col1":0}
+{"col1":5}
+{"col1":10}
+{"col1":15}
+{"col1":20}
+{"col1":25}
+{"col1":30}
+{"col1":35}
+{"col1":40}
+{"col1":45}
+{"col1":0}
+{"col1":6}
+{"col1":12}
+{"col1":18}
+{"col1":24}
+{"col1":30}
+{"col1":36}
+{"col1":42}
+{"col1":48}
+{"col1":54}
+{"col1":0}
+{"col1":7}
+{"col1":14}
+{"col1":21}
+{"col1":28}
+{"col1":35}
+{"col1":42}
+{"col1":49}
+{"col1":56}
+{"col1":63}
+{"col1":0}
+{"col1":8}
+{"col1":16}
+{"col1":24}
+{"col1":32}
+{"col1":40}
+{"col1":48}
+{"col1":56}
+{"col1":64}
+{"col1":72}
+{"col1":0}
+{"col1":9}
+{"col1":18}
+{"col1":27}
+{"col1":36}
+{"col1":45}
+{"col1":54}
+{"col1":63}
+{"col1":72}
+{"col1":81}
+________________________________________________________________________________________________________________________
+

@@ -380,6 +380,7 @@ public final class FileDump {
     for (StripeInformation stripe : reader.getStripes()) {
       ++stripeIx;
       long stripeStart = stripe.getOffset();
+      System.out.println("HK: stripeStart = " + stripeStart);
       OrcProto.StripeFooter footer = rows.readStripeFooter(stripe);
       if (printTimeZone) {
         String tz = footer.getWriterTimezone();
