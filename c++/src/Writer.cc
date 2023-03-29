@@ -307,7 +307,7 @@ namespace orc {
     static const char* magicId;
     static const WriterId writerId;
     bool useTightNumericVector;
-    long numStripes;
+    // long numStripes;
     long stripesAtLastFlush;
     long lastFlushOffset;
 
@@ -345,7 +345,8 @@ namespace orc {
     columnWriter = buildWriter(type, *streamsFactory, options);
     stripeRows = totalRows = indexRows = 0;
     currentOffset = 0;
-    numStripes = stripesAtLastFlush = lastFlushOffset = 0;
+    // numStripes = stripesAtLastFlush = lastFlushOffset = 0;
+    stripesAtLastFlush = lastFlushOffset = 0;
 
     useTightNumericVector = opts.getUseTightNumericVector();
 
@@ -434,11 +435,14 @@ namespace orc {
       printf("%s %d: stripeRows > 0: %ld\n", __func__, __LINE__, stripeRows);
       writeStripe();
     }
-    printf("%s %d: stripesAtLastFlush %ld, numStripes %ld\n", __func__, __LINE__, stripesAtLastFlush, numStripes);
-    if (stripesAtLastFlush != numStripes) {
+    // printf("%s %d: stripesAtLastFlush %ld, numStripes %ld\n", __func__, __LINE__, stripesAtLastFlush, numStripes);
+    printf("%s %d: stripesAtLastFlush %ld, fileFooter.stripes_size() %d\n", __func__, __LINE__, stripesAtLastFlush, fileFooter.stripes_size());
+    // if (stripesAtLastFlush != numStripes) {
+    if (stripesAtLastFlush != fileFooter.stripes_size()) {
       writeMetadata();
       writeFileFooter();
-      stripesAtLastFlush = numStripes;
+      // stripesAtLastFlush = numStripes;
+      stripesAtLastFlush = fileFooter.stripes_size();
       writePostscript();
       // lastFlushOffset = outStream->getLength();
       printf("%s %d: lastFlushOffset %ld\n", __func__, __LINE__, lastFlushOffset);
@@ -453,7 +457,7 @@ namespace orc {
       // HK<<
     }
     printf("%s %d: <<<\n", __func__, __LINE__);
-    return stripesAtLastFlush;
+    return lastFlushOffset;
   }
 
   void WriterImpl::addUserMetadata(const std::string& name, const std::string& value) {
@@ -589,7 +593,7 @@ namespace orc {
 
     columnWriter->reset();
 
-    numStripes += 1;
+    // numStripes += 1;
 
     initStripe();
   }

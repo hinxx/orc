@@ -1,0 +1,433 @@
+void test_multi_stripe_flushing(unsigned rowBatchSize) {
+  std::unique_ptr<orc::OutputStream> outFile = orc::writeLocalFile("c++-flushing.orc");
+  orc::MemoryPool *pool = orc::getDefaultPool();
+  ORC_UNIQUE_PTR<orc::Type> type(orc::Type::buildTypeFromString("struct<col1:int>"));
+
+  uint64_t stripeSize = 20;
+  uint64_t compressionBlockSize = 1024;
+
+  std::unique_ptr<orc::Writer> writer = myCreateWriter(
+                                    stripeSize,
+                                    compressionBlockSize,
+                                    orc::CompressionKind_NONE,
+                                    *type,
+                                    pool,
+                                    outFile.get(),
+                                    orc::FileVersion::v_0_12());
+
+  // multiple stripes
+  std::unique_ptr<orc::ColumnVectorBatch> batch = writer->createRowBatch(rowBatchSize);
+  orc::StructVectorBatch* structBatch = dynamic_cast<orc::StructVectorBatch*>(batch.get());
+  orc::LongVectorBatch* longBatch = dynamic_cast<orc::LongVectorBatch*>(structBatch->fields[0]);
+
+  for (uint64_t j = 0; j < 10; ++j) {
+      for (uint64_t i = 0; i < rowBatchSize; ++i) {
+          longBatch->data[i] = static_cast<int64_t>(i*j);
+      }
+      structBatch->numElements = rowBatchSize;
+      longBatch->numElements = rowBatchSize;
+
+      writer->add(*batch);
+      writer->writeIntermediateFooter();
+  }
+
+  writer->close();
+}
+
+
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ ../../install-git/bin/orc-metadata c++-flushing.orc
+{ "name": "c++-flushing.orc",
+  "type": "struct<col1:int>",
+  "attributes": {},
+  "rows": 100,
+  "stripe count": 10,
+  "format": "0.12", "writer version": "ORC-135", "software version": "ORC C++ 1.9.0-SNAPSHOT",
+  "compression": "none",
+  "file length": 3718,
+  "content": 3253, "stripe stats": 230, "footer": 207, "postscript": 24,
+  "user metadata": {
+  },
+  "stripes": [
+    { "stripe": 0, "rows": 10,
+      "offset": 3, "length": 27,
+      "index": 0, "data": 2, "footer": 25
+    },
+    { "stripe": 1, "rows": 10,
+      "offset": 162, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 2, "rows": 10,
+      "offset": 359, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 3, "rows": 10,
+      "offset": 593, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 4, "rows": 10,
+      "offset": 864, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 5, "rows": 10,
+      "offset": 1171, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 6, "rows": 10,
+      "offset": 1515, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 7, "rows": 10,
+      "offset": 1895, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 8, "rows": 10,
+      "offset": 2311, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    },
+    { "stripe": 9, "rows": 10,
+      "offset": 2765, "length": 29,
+      "index": 0, "data": 4, "footer": 25
+    }
+  ]
+}
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ ../../install-git/bin/orc-scan c++-flushing.orc
+Rows: 100
+Batches: 10
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ ../../install-git/bin/orc- c++-flushing.orc
+orc-contents    orc-memory      orc-metadata    orc-scan        orc-statistics
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ ../../install-git/bin/orc-contents c++-flushing.orc
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 0}
+{"col1": 1}
+{"col1": 2}
+{"col1": 3}
+{"col1": 4}
+{"col1": 5}
+{"col1": 6}
+{"col1": 7}
+{"col1": 8}
+{"col1": 9}
+{"col1": 0}
+{"col1": 2}
+{"col1": 4}
+{"col1": 6}
+{"col1": 8}
+{"col1": 10}
+{"col1": 12}
+{"col1": 14}
+{"col1": 16}
+{"col1": 18}
+{"col1": 0}
+{"col1": 3}
+{"col1": 6}
+{"col1": 9}
+{"col1": 12}
+{"col1": 15}
+{"col1": 18}
+{"col1": 21}
+{"col1": 24}
+{"col1": 27}
+{"col1": 0}
+{"col1": 4}
+{"col1": 8}
+{"col1": 12}
+{"col1": 16}
+{"col1": 20}
+{"col1": 24}
+{"col1": 28}
+{"col1": 32}
+{"col1": 36}
+{"col1": 0}
+{"col1": 5}
+{"col1": 10}
+{"col1": 15}
+{"col1": 20}
+{"col1": 25}
+{"col1": 30}
+{"col1": 35}
+{"col1": 40}
+{"col1": 45}
+{"col1": 0}
+{"col1": 6}
+{"col1": 12}
+{"col1": 18}
+{"col1": 24}
+{"col1": 30}
+{"col1": 36}
+{"col1": 42}
+{"col1": 48}
+{"col1": 54}
+{"col1": 0}
+{"col1": 7}
+{"col1": 14}
+{"col1": 21}
+{"col1": 28}
+{"col1": 35}
+{"col1": 42}
+{"col1": 49}
+{"col1": 56}
+{"col1": 63}
+{"col1": 0}
+{"col1": 8}
+{"col1": 16}
+{"col1": 24}
+{"col1": 32}
+{"col1": 40}
+{"col1": 48}
+{"col1": 56}
+{"col1": 64}
+{"col1": 72}
+{"col1": 0}
+{"col1": 9}
+{"col1": 18}
+{"col1": 27}
+{"col1": 36}
+{"col1": 45}
+{"col1": 54}
+{"col1": 63}
+{"col1": 72}
+{"col1": 81}
+
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
+[main] WARN org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+log4j:WARN No appenders could be found for logger (org.apache.htrace.core.Tracer).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Processing data file c++-flushing.orc [length: 3718]
+Structure for c++-flushing.orc
+File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+Rows: 100
+Compression: NONE
+Calendar: Julian/Gregorian
+Type: struct<col1:int>
+
+Stripe Statistics:
+  Stripe 1:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 0 sum: 0
+  Stripe 2:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 9 sum: 45
+  Stripe 3:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 18 sum: 90
+  Stripe 4:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 27 sum: 135
+  Stripe 5:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 36 sum: 180
+  Stripe 6:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 45 sum: 225
+  Stripe 7:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 54 sum: 270
+  Stripe 8:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 63 sum: 315
+  Stripe 9:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 72 sum: 360
+  Stripe 10:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 81 sum: 405
+fileStats.size() = 2
+i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+
+File Statistics:
+  Column 0: count: 100 hasNull: false
+  Column 1: count: 100 hasNull: false min: 0 max: 81 sum: 2025
+
+Stripes:
+HK: stripeStart = 3
+  Stripe: offset: 3 data: 2 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 3 length 2
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 162
+  Stripe: offset: 162 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 162 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 359
+  Stripe: offset: 359 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 359 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 593
+  Stripe: offset: 593 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 593 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 864
+  Stripe: offset: 864 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 864 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1171
+  Stripe: offset: 1171 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1171 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1515
+  Stripe: offset: 1515 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1515 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 1895
+  Stripe: offset: 1895 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 1895 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 2311
+  Stripe: offset: 2311 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 2311 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+HK: stripeStart = 2765
+  Stripe: offset: 2765 data: 4 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 2765 length 4
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+
+File length: 3718 bytes
+Padding length: 2503 bytes
+Padding ratio: 67.32%
+________________________________________________________________________________________________________________________
+
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar scan c++-flushing.orc
+[main] WARN org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+log4j:WARN No appenders could be found for logger (org.apache.htrace.core.Tracer).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Processing data file c++-flushing.orc [length: 3718]
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+File: c++-flushing.orc, bad batches: 0, rows: 100/100
+________________________________________________________________________________________________________________________
+
+hinxx@obzen ~/ess/orc-flushing/orc-git/flushing $ java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar data c++-flushing.orc
+[main] WARN org.apache.hadoop.util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+log4j:WARN No appenders could be found for logger (org.apache.htrace.core.Tracer).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Processing data file c++-flushing.orc [length: 3718]
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":0}
+{"col1":1}
+{"col1":2}
+{"col1":3}
+{"col1":4}
+{"col1":5}
+{"col1":6}
+{"col1":7}
+{"col1":8}
+{"col1":9}
+{"col1":0}
+{"col1":2}
+{"col1":4}
+{"col1":6}
+{"col1":8}
+{"col1":10}
+{"col1":12}
+{"col1":14}
+{"col1":16}
+{"col1":18}
+{"col1":0}
+{"col1":3}
+{"col1":6}
+{"col1":9}
+{"col1":12}
+{"col1":15}
+{"col1":18}
+{"col1":21}
+{"col1":24}
+{"col1":27}
+{"col1":0}
+{"col1":4}
+{"col1":8}
+{"col1":12}
+{"col1":16}
+{"col1":20}
+{"col1":24}
+{"col1":28}
+{"col1":32}
+{"col1":36}
+{"col1":0}
+{"col1":5}
+{"col1":10}
+{"col1":15}
+{"col1":20}
+{"col1":25}
+{"col1":30}
+{"col1":35}
+{"col1":40}
+{"col1":45}
+{"col1":0}
+{"col1":6}
+{"col1":12}
+{"col1":18}
+{"col1":24}
+{"col1":30}
+{"col1":36}
+{"col1":42}
+{"col1":48}
+{"col1":54}
+{"col1":0}
+{"col1":7}
+{"col1":14}
+{"col1":21}
+{"col1":28}
+{"col1":35}
+{"col1":42}
+{"col1":49}
+{"col1":56}
+{"col1":63}
+{"col1":0}
+{"col1":8}
+{"col1":16}
+{"col1":24}
+{"col1":32}
+{"col1":40}
+{"col1":48}
+{"col1":56}
+{"col1":64}
+{"col1":72}
+{"col1":0}
+{"col1":9}
+{"col1":18}
+{"col1":27}
+{"col1":36}
+{"col1":45}
+{"col1":54}
+{"col1":63}
+{"col1":72}
+{"col1":81}
+________________________________________________________________________________________________________________________
+

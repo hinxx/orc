@@ -1413,9 +1413,7 @@ After adding the lines:
       // init stripe now that we adjusted the currentOffset
       initStripe();
 
-to the   long WriterImpl::writeIntermediateFooter()  and commenting out the  initStripe(); from the
-  void WriterImpl::writeStripe()  there are no more issues!
-
+to the   long WriterImpl::writeIntermediateFooter() there are no more issues!
 
 java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
 Processing data file c++-flushing.orc [length: 3718]
@@ -1637,3 +1635,4 @@ Processing data file c++-flushing.orc [length: 3718]
 {"col1":81}
 ________________________________________________________________________________________________________________________
 
+Values look good..
