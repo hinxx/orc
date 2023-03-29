@@ -13,3 +13,5 @@ dependency-reduced-pom.xml
 .java-version
 java/bench/data
 .swp
+flushing/test1
+flushing/*.orc.crc
