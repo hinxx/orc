@@ -17,7 +17,7 @@ java -jar ../orc-git/java/examples/target/orc-examples-1.9.0-SNAPSHOT-uber.jar w
 test the files with C++ tools:
 
 
-../install-git/bin/orc-metadata java-original.orc 
+../install-git/bin/orc-metadata java-original.orc
 { "name": "java-original.orc",
   "type": "struct<col1:int>",
   "attributes": {},
@@ -38,7 +38,7 @@ test the files with C++ tools:
   ]
 }
 
-../install-git/bin/orc-metadata c++-original.orc 
+../install-git/bin/orc-metadata c++-original.orc
 { "name": "c++-original.orc",
   "type": "struct<col1:int>",
   "attributes": {},
@@ -58,7 +58,7 @@ test the files with C++ tools:
   ]
 }
 
-../install-git/bin/orc-metadata c++-flushing.orc 
+../install-git/bin/orc-metadata c++-flushing.orc
 { "name": "c++-flushing.orc",
   "type": "struct<col1:int>",
   "attributes": {},
@@ -114,7 +114,7 @@ test the files with C++ tools:
   ]
 }
 
-../install-git/bin/orc-metadata java-flush.orc 
+../install-git/bin/orc-metadata java-flush.orc
 { "name": "java-flush.orc",
   "type": "struct<col1:int>",
   "attributes": {},
@@ -171,119 +171,26 @@ test the files with C++ tools:
   ]
 }
 
-../install-git/bin/orc-scan java-original.orc 
+../install-git/bin/orc-scan java-original.orc
 Rows: 100
 Batches: 1
 
-../install-git/bin/orc-scan java-flush.orc 
+../install-git/bin/orc-scan java-flush.orc
 Rows: 100
 Batches: 10
 
-../install-git/bin/orc-scan c++-original.orc 
+../install-git/bin/orc-scan c++-original.orc
 Rows: 100
 Batches: 1
 
-../install-git/bin/orc-scan c++-flushing.orc 
+../install-git/bin/orc-scan c++-flushing.orc
 Caught exception in c++-flushing.orc: bad StripeFooter from c++-flushing.orc from 34 for 25
 
 
 test the files with Java tools:
 
-java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-original.orc
-Processing data file c++-original.orc [length: 720]
-Structure for c++-original.orc
-File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
-[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-original.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
-[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
-Rows: 100
-Compression: NONE
-Calendar: Julian/Gregorian
-Type: struct<col1:int>
 
-Stripe Statistics:
-  Stripe 1:
-    Column 0: count: 100 hasNull: false
-    Column 1: count: 100 hasNull: false min: 0 max: 7451612880285936483
-
-File Statistics:
-  Column 0: count: 100 hasNull: false
-  Column 1: count: 100 hasNull: false min: 0 max: 7451612880285936483
-
-Stripes:
-  Stripe: offset: 3 data: 527 rows: 100 tail: 42 index: 0
-    Stream: column 0 section PRESENT start: 3 length 13
-    Stream: column 1 section PRESENT start: 16 length 12
-    Stream: column 1 section DATA start: 28 length 502
-    Encoding column 0: DIRECT
-    Encoding column 1: DIRECT_V2
-
-File length: 720 bytes
-Padding length: 0 bytes
-Padding ratio: 0%
-
-java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
-
-Processing data file c++-flushing.orc [length: 4821]
-Structure for c++-flushing.orc
-File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
-[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
-[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
-Rows: 100
-Compression: NONE
-Calendar: Julian/Gregorian
-Type: struct<col1:int>
-
-Stripe Statistics:
-  Stripe 1:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 0 sum: 0
-  Stripe 2:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 9 sum: 45
-  Stripe 3:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 18 sum: 90
-  Stripe 4:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 27 sum: 135
-  Stripe 5:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 36 sum: 180
-  Stripe 6:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 45 sum: 225
-  Stripe 7:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 54 sum: 270
-  Stripe 8:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 63 sum: 315
-  Stripe 9:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 72 sum: 360
-  Stripe 10:
-    Column 0: count: 10 hasNull: false
-    Column 1: count: 10 hasNull: false min: 0 max: 81 sum: 405
-fileStats.size() = 22
-i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
-{  "col1": {"category": "int", "id": 1, "max": 1}}]}
-i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
-{  "col1": {"category": "int", "id": 1, "max": 1}}]}
-i = 2, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
-{  "col1": {"category": "int", "id": 1, "max": 1}}]}
-Exception in thread "main" java.lang.IllegalArgumentException: Unknown type id 2 in {"category": "struct", "id": 0, "max": 1, "fields": [
-{  "col1": {"category": "int", "id": 1, "max": 1}}]}
-	at org.apache.orc.impl.ParserUtils.findSubtype(ParserUtils.java:310)
-	at org.apache.orc.TypeDescription.findSubtype(TypeDescription.java:801)
-	at org.apache.orc.impl.ReaderImpl.deserializeStats(ReaderImpl.java:425)
-	at org.apache.orc.impl.ReaderImpl.getStatistics(ReaderImpl.java:359)
-	at org.apache.orc.tools.FileDump.printMetaDataImpl(FileDump.java:366)
-	at org.apache.orc.tools.FileDump.printMetaData(FileDump.java:276)
-	at org.apache.orc.tools.FileDump.main(FileDump.java:137)
-	at org.apache.orc.tools.Driver.main(Driver.java:124)
-
-
-java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta java-original.orc 
+java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta java-original.orc
 Processing data file java-original.orc [length: 289]
 Structure for java-original.orc
 File Version: 0.12 with ORC_14 by ORC Java 1.9.0-SNAPSHOT
@@ -315,7 +222,7 @@ File length: 289 bytes
 Padding length: 0 bytes
 Padding ratio: 0%
 
-java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta java-flush.orc 
+java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta java-flush.orc
 
 Processing data file java-flush.orc [length: 4097]
 Structure for java-flush.orc
@@ -436,8 +343,183 @@ Padding length: 2502 bytes
 Padding ratio: 61.07%
 
 
+java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-original.orc
+Processing data file c++-original.orc [length: 720]
+Structure for c++-original.orc
+File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-original.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+Rows: 100
+Compression: NONE
+Calendar: Julian/Gregorian
+Type: struct<col1:int>
+
+Stripe Statistics:
+  Stripe 1:
+    Column 0: count: 100 hasNull: false
+    Column 1: count: 100 hasNull: false min: 0 max: 7451612880285936483
+
+File Statistics:
+  Column 0: count: 100 hasNull: false
+  Column 1: count: 100 hasNull: false min: 0 max: 7451612880285936483
+
+Stripes:
+  Stripe: offset: 3 data: 527 rows: 100 tail: 42 index: 0
+    Stream: column 0 section PRESENT start: 3 length 13
+    Stream: column 1 section PRESENT start: 16 length 12
+    Stream: column 1 section DATA start: 28 length 502
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+
+File length: 720 bytes
+Padding length: 0 bytes
+Padding ratio: 0%
+
+java -jar ../orc-git/java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
+
+Processing data file c++-flushing.orc [length: 4821]
+Structure for c++-flushing.orc
+File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+Rows: 100
+Compression: NONE
+Calendar: Julian/Gregorian
+Type: struct<col1:int>
+
+Stripe Statistics:
+  Stripe 1:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 0 sum: 0
+  Stripe 2:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 9 sum: 45
+  Stripe 3:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 18 sum: 90
+  Stripe 4:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 27 sum: 135
+  Stripe 5:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 36 sum: 180
+  Stripe 6:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 45 sum: 225
+  Stripe 7:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 54 sum: 270
+  Stripe 8:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 63 sum: 315
+  Stripe 9:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 72 sum: 360
+  Stripe 10:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 81 sum: 405
+fileStats.size() = 22
+i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 2, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+Exception in thread "main" java.lang.IllegalArgumentException: Unknown type id 2 in {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+	at org.apache.orc.impl.ParserUtils.findSubtype(ParserUtils.java:310)
+	at org.apache.orc.TypeDescription.findSubtype(TypeDescription.java:801)
+	at org.apache.orc.impl.ReaderImpl.deserializeStats(ReaderImpl.java:425)
+	at org.apache.orc.impl.ReaderImpl.getStatistics(ReaderImpl.java:359)
+	at org.apache.orc.tools.FileDump.printMetaDataImpl(FileDump.java:366)
+	at org.apache.orc.tools.FileDump.printMetaData(FileDump.java:276)
+	at org.apache.orc.tools.FileDump.main(FileDump.java:137)
+	at org.apache.orc.tools.Driver.main(Driver.java:124)
 
 
+After adding
+
+    fileFooter.clear_statistics();
+
+to   void WriterImpl::writeFileFooter() {
+
+the problem with fileStats.size() = 22 is gone.
 
 
+java -jar ../java/tools/target/orc-tools-1.9.0-SNAPSHOT-uber.jar meta c++-flushing.orc
+Processing data file c++-flushing.orc [length: 3680]
+Structure for c++-flushing.orc
+File Version: 0.12 with ORC_CPP_ORIGINAL by ORC C++ 1.9.0-SNAPSHOT
+[main] INFO org.apache.orc.impl.ReaderImpl - Reading ORC rows from c++-flushing.orc with {include: null, offset: 0, length: 9223372036854775807, includeAcidColumns: true, allowSARGToFilter: false, useSelected: false}
+[main] INFO org.apache.orc.impl.RecordReaderImpl - Reader schema not provided -- using file schema struct<col1:int>
+Rows: 100
+Compression: NONE
+Calendar: Julian/Gregorian
+Type: struct<col1:int>
 
+Stripe Statistics:
+  Stripe 1:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 0 sum: 0
+  Stripe 2:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 9 sum: 45
+  Stripe 3:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 18 sum: 90
+  Stripe 4:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 27 sum: 135
+  Stripe 5:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 36 sum: 180
+  Stripe 6:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 45 sum: 225
+  Stripe 7:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 54 sum: 270
+  Stripe 8:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 63 sum: 315
+  Stripe 9:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 72 sum: 360
+  Stripe 10:
+    Column 0: count: 10 hasNull: false
+    Column 1: count: 10 hasNull: false min: 0 max: 81 sum: 405
+fileStats.size() = 2
+i = 0, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+i = 1, schema = {"category": "struct", "id": 0, "max": 1, "fields": [
+{  "col1": {"category": "int", "id": 1, "max": 1}}]}
+
+File Statistics:
+  Column 0: count: 100 hasNull: false
+  Column 1: count: 100 hasNull: false min: 0 max: 81 sum: 2025
+
+Stripes:
+  Stripe: offset: 3 data: 2 rows: 10 tail: 25 index: 0
+    Stream: column 1 section DATA start: 3 length 2
+    Encoding column 0: DIRECT
+    Encoding column 1: DIRECT_V2
+Exception in thread "main" org.apache.orc.protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+	at org.apache.orc.protobuf.InvalidProtocolBufferException.truncatedMessage(InvalidProtocolBufferException.java:107)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readRawBytesSlowPathOneChunk(CodedInputStream.java:2984)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readBytesSlowPath(CodedInputStream.java:3035)
+	at org.apache.orc.protobuf.CodedInputStream$StreamDecoder.readBytes(CodedInputStream.java:2446)
+	at org.apache.orc.OrcProto$StripeFooter.<init>(OrcProto.java:16930)
+	at org.apache.orc.OrcProto$StripeFooter.<init>(OrcProto.java:16864)
+	at org.apache.orc.OrcProto$StripeFooter$1.parsePartialFrom(OrcProto.java:18562)
+	at org.apache.orc.OrcProto$StripeFooter$1.parsePartialFrom(OrcProto.java:18556)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:86)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:91)
+	at org.apache.orc.protobuf.AbstractParser.parseFrom(AbstractParser.java:48)
+	at org.apache.orc.protobuf.GeneratedMessageV3.parseWithIOException(GeneratedMessageV3.java:357)
+	at org.apache.orc.OrcProto$StripeFooter.parseFrom(OrcProto.java:17342)
+	at org.apache.orc.impl.RecordReaderUtils$DefaultDataReader.readStripeFooter(RecordReaderUtils.java:97)
+	at org.apache.orc.impl.RecordReaderImpl.readStripeFooter(RecordReaderImpl.java:432)
+	at org.apache.orc.tools.FileDump.printMetaDataImpl(FileDump.java:383)
+	at org.apache.orc.tools.FileDump.printMetaData(FileDump.java:276)
+	at org.apache.orc.tools.FileDump.main(FileDump.java:137)
+	at org.apache.orc.tools.Driver.main(Driver.java:124)

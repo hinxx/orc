@@ -570,7 +570,7 @@ namespace orc {
     columnWriter->reset();
 
     numStripes += 1;
-    
+
     initStripe();
   }
 
@@ -588,6 +588,9 @@ namespace orc {
     // update file statistics
     std::vector<proto::ColumnStatistics> colStats;
     columnWriter->getFileStatistics(colStats);
+    // HK>> this solves the 22 file statistics issue!!
+    fileFooter.clear_statistics();
+    // HK<<
     for (uint32_t i = 0; i != colStats.size(); ++i) {
       *fileFooter.add_statistics() = colStats[i];
     }
