@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/c++/include",
+                "/data/data/Code/orc/build-git/c++/src",
+                "/data/data/Code/orc/build-git/c++/libs/thirdparty/protobuf_ep-install/include",
+                "/data/data/Code/orc/install-git/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}

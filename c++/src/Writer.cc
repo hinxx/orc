@@ -307,6 +307,9 @@ namespace orc {
     static const char* magicId;
     static const WriterId writerId;
     bool useTightNumericVector;
+    long numStripes;
+    long stripesAtLastFlush;
+    long lastFlushOffset;
 
    public:
     WriterImpl(const Type& type, OutputStream* stream, const WriterOptions& options);
@@ -318,6 +321,8 @@ namespace orc {
     void close() override;
 
     void addUserMetadata(const std::string& name, const std::string& value) override;
+
+    long writeIntermediateFooter() override;
 
    private:
     void init();
@@ -340,6 +345,7 @@ namespace orc {
     columnWriter = buildWriter(type, *streamsFactory, options);
     stripeRows = totalRows = indexRows = 0;
     currentOffset = 0;
+    numStripes = stripesAtLastFlush = lastFlushOffset = 0;
 
     useTightNumericVector = opts.getUseTightNumericVector();
 
@@ -398,6 +404,44 @@ namespace orc {
     writeFileFooter();
     writePostscript();
     outStream->close();
+  }
+
+/*
+
+  @Override
+  public long writeIntermediateFooter() throws IOException {
+    // flush any buffered rows
+    flushStripe();
+    // write a footer
+    if (stripesAtLastFlush != stripes.size()) {
+      if (callback != null) {
+        callback.preFooterWrite(callbackContext);
+      }
+      lastFlushOffset = writeFooter();
+      stripesAtLastFlush = stripes.size();
+      physicalWriter.flush();
+    }
+    return lastFlushOffset;
+  }
+
+*/
+
+  long WriterImpl::writeIntermediateFooter() {
+    if (stripeRows > 0) {
+      printf("%s: stripeRows > 0: %ld\n", __func__, stripeRows);
+      writeStripe();
+    }
+    printf("%s: stripesAtLastFlush %ld, numStripes %ld\n", __func__, stripesAtLastFlush, numStripes);
+    if (stripesAtLastFlush != numStripes) {
+      writeMetadata();
+      writeFileFooter();
+      stripesAtLastFlush = numStripes;
+      writePostscript();
+      lastFlushOffset = outStream->getLength();
+      printf("%s: lastFlushOffset %ld\n", __func__, lastFlushOffset);
+      outStream->flush();
+    }
+    return stripesAtLastFlush;
   }
 
   void WriterImpl::addUserMetadata(const std::string& name, const std::string& value) {
@@ -525,6 +569,8 @@ namespace orc {
 
     columnWriter->reset();
 
+    numStripes += 1;
+    
     initStripe();
   }
 

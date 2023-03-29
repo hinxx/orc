@@ -71,6 +71,8 @@ public class Driver {
           " [--define X=Y] <command> <args>");
       System.err.println();
       System.err.println("Commands:");
+      System.err.println("   original - write a sample ORC file");
+      System.err.println("   flush - write a sample ORC file with flushing");
       System.err.println("   write - write a sample ORC file");
       System.err.println("   read - read a sample ORC file");
       System.err.println("   write2 - write a sample ORC file with a map");
@@ -92,6 +94,10 @@ public class Driver {
     }
     if ("read".equals(options.command)) {
       CoreReader.main(conf, options.commandArgs);
+    } else if ("original".equals(options.command)) {
+      CoreWriterMy.main(conf, options.commandArgs);
+    } else if ("flush".equals(options.command)) {
+      CoreWriterMyFlush.main(conf, options.commandArgs);
     } else if ("write".equals(options.command)) {
       CoreWriter.main(conf, options.commandArgs);
     } else if ("write2".equals(options.command)) {

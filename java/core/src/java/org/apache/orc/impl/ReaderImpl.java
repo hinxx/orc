@@ -420,8 +420,10 @@ public class ReaderImpl implements Reader {
   public ColumnStatistics[] deserializeStats(
       TypeDescription schema,
       List<OrcProto.ColumnStatistics> fileStats) {
+    System.out.println("fileStats.size() = " + fileStats.size());
     ColumnStatistics[] result = new ColumnStatistics[fileStats.size()];
     for(int i=0; i < result.length; ++i) {
+      System.out.println("i = " + i + ", schema = " + schema.toJson());
       TypeDescription subschema = schema == null ? null : schema.findSubtype(i);
       result[i] = ColumnStatisticsImpl.deserialize(subschema, fileStats.get(i),
           writerUsedProlepticGregorian(),
